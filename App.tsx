@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
@@ -12,8 +11,6 @@ export default function App() {
   );
 
   const handleTakePhotoWithCamera = () => {
-    console.log("take photo");
-
     takePhotoWithCamera().then((uriImage) => {
       if (uriImage !== undefined) {
         setImage(uriImage);
@@ -22,8 +19,6 @@ export default function App() {
   };
 
   const handleSelectPhotoFromGallery = () => {
-    console.log("choose photo");
-
     selectPhotoFromGallery().then((uriImage) => {
       if (uriImage !== undefined) {
         setImage(uriImage);
@@ -32,27 +27,40 @@ export default function App() {
   };
 
   return (
-    <View className="flex flex-1 w-full h-full justify-center items-center">
-      <Text className="text-3xl mb-4 px-42 text-center">
-        Toma una foto con la camara con este botón:
+    <View className="flex flex-1 w-full h-full justify-start items-center pb-8">
+      <Text className="text-4xl text-white bg-universae-blue text-center font-bold pt-16 pb-4 mb-2 px-4 w-full">
+        Corrector de éxamenes de Universae
       </Text>
-      <TouchableOpacity onPress={handleTakePhotoWithCamera}>
-        <Text className="font-bold text-3xl border-black border-4 p-4 mb-6 rounded-2xl">
-          Cámara
-        </Text>
-      </TouchableOpacity>
-      <Text className="text-3xl mb-4 px-42 text-center">
-        Toma una foto de la galería con este botón:
+      <Text className="text-2xl mb-4 px-10 text-center">
+        Selecciona una foto de la galería o toma una foto con la cámara
       </Text>
-      <TouchableOpacity onPress={handleSelectPhotoFromGallery}>
-        <Text className="font-bold text-3xl border-black border-4 p-4 rounded-2xl">
-          Gallería
-        </Text>
-      </TouchableOpacity>
-      <View className="mt-6 border-4 border-black">
-        <Image className="w-60 h-72" source={image} />
+      <View className="w-full flex flex-row justify-evenly mb-4">
+        <TouchableOpacity onPress={handleTakePhotoWithCamera}>
+          <Text className="font-bold text-3xl border-black border-4 p-4 rounded-2xl">
+            Cámara
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleSelectPhotoFromGallery}>
+          <Text className="font-bold text-3xl border-black border-4 p-4 rounded-2xl">
+            Gallería
+          </Text>
+        </TouchableOpacity>
       </View>
-      <StatusBar style="auto" />
+      <View className=" w-full flex flex-1 items-center">
+        <Image className="w-4/6 h-full border-4 rounded-md" source={image} />
+      </View>
+      <View className="flex flex-col w-full items-center">
+        <TouchableOpacity className="w-5/6">
+          <Text className="text-center font-bold text-3xl border-black border-4 p-4 mb-4 mt-4 rounded-2xl">
+            Agregar una plantilla
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity className="w-5/6">
+          <Text className="text-center font-bold text-3xl border-black border-4 p-4 mb-4 rounded-2xl">
+            Corregir exámen
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

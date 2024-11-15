@@ -8,6 +8,8 @@ const selectPhotoFromGallery = async () => {
     quality: 1,
   });
 
+  console.log(result);
+
   if (!result.canceled) {
     const uriImage = { uri: result.assets[0].uri };
     return uriImage;
